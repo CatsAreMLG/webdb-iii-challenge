@@ -9,8 +9,14 @@ module.exports = {
 
 function get(id) {
   if (id)
-    return db('users')
-      .where({ id })
+    return db
+      .select('users.id', 'users.name')
+      .select('cohorts.name AS cohort_name')
+      .from('users')
+      .innerJoin('cohorts', function() {
+        this.on('cohorts.id', '=', 'users.cohort_id')
+      })
+      .where({ 'users.id': id })
       .first()
   else return db('users')
 }
