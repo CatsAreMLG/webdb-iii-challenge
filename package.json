@@ -1,0 +1,21 @@
+{
+  "name": "webdb-iii-challenge",
+  "version": "1.0.0",
+  "description": "- Databases\r - Relational Databases\r - Knex migrations.\r - Seeding data.",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CatsAreMLG/webdb-iii-challenge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CatsAreMLG/webdb-iii-challenge/issues"
+  },
+  "homepage": "https://github.com/CatsAreMLG/webdb-iii-challenge#readme"
+}
