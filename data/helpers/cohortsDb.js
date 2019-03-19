@@ -5,6 +5,10 @@ module.exports = {
   get
 }
 
-function get() {
-  return db(TABLE)
+function get(id) {
+  if (id)
+    return db(TABLE)
+      .where({ id })
+      .first()
+  else return db(TABLE)
 }

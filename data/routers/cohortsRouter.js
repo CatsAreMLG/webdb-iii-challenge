@@ -11,4 +11,16 @@ router.get('/', async (req, res) => {
   }
 })
 
+router.get('/:id', async (req, res) => {
+  const id = req.params.id
+  try {
+    const cohort = await Cohorts.get(id)
+    cohort
+      ? res.status(200).json(cohort)
+      : res.status(404).json({ message: 'Cohort not found' })
+  } catch (error) {
+    res.status(500).json(error)
+  }
+})
+
 module.exports = router
