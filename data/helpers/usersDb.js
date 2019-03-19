@@ -2,7 +2,7 @@ const db = require('../../dbConfig')
 
 module.exports = {
   get,
-  findStudents,
+  // findStudents,
   insert,
   update,
   remove
@@ -10,34 +10,34 @@ module.exports = {
 
 function get(id) {
   if (id)
-    return db('cohorts')
+    return db('users')
       .where({ id })
       .first()
-  else return db('cohorts')
+  else return db('users')
 }
 
-function findStudents(id) {
-  return db('cohorts')
-    .innerJoin('users', function() {
-      this.on('cohorts.id', '=', 'users.cohort_id')
-    })
-    .where({ cohort_id: id })
-}
+// function findStudents(id) {
+//   return db('users')
+//     .innerJoin('users', function() {
+//       this.on('cohorts.id', '=', 'users.cohort_id')
+//     })
+//     .where({ cohort_id: id })
+// }
 
 function insert(name) {
-  return db('cohorts')
+  return db('users')
     .insert(name)
     .then(ids => get(ids[0]))
 }
 
 function update(id, changes) {
-  return db('cohorts')
+  return db('users')
     .where({ id })
     .update(changes)
 }
 
 function remove(id) {
-  return db('cohorts')
+  return db('users')
     .where({ id })
     .del()
 }
