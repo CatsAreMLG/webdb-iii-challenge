@@ -38,14 +38,14 @@ router.get('/:id/students', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const { body } = req
-  if (body && body.name)
+  if (body && body.name && body.cohort_id)
     try {
       const user = await Users.insert(body)
       res.status(200).json(user)
     } catch (error) {
       res.status(500).json(error)
     }
-  else res.status(500).json({ error: 'Please provide a name' })
+  else res.status(500).json({ error: 'Please provide a name and cohort_id' })
 })
 
 router.put('/:id', async (req, res) => {
