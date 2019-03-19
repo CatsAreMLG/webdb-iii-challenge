@@ -3,6 +3,7 @@ const TABLE = 'cohorts'
 
 module.exports = {
   get,
+  findStudents,
   insert,
   update,
   remove
@@ -14,6 +15,14 @@ function get(id) {
       .where({ id })
       .first()
   else return db(TABLE)
+}
+
+function findStudents(id) {
+  return db(TABLE)
+    .innerJoin('users', function() {
+      this.on('cohorts.id', '=', 'users.cohort_id')
+    })
+    .where({ cohort_id: id })
 }
 
 function insert(name) {

@@ -23,6 +23,19 @@ router.get('/:id', async (req, res) => {
   }
 })
 
+router.get('/:id/students', async (req, res) => {
+  const { id } = req.params
+  try {
+    const cohort = await Cohorts.findStudents(id)
+    const findCohort = await Cohorts.get(id)
+    findCohort
+      ? res.status(200).json(cohort)
+      : res.status(404).json({ message: 'Cohort not found' })
+  } catch (error) {
+    res.status(500).json(error)
+  }
+})
+
 router.post('/', async (req, res) => {
   const { body } = req
   if (body && body.name)
