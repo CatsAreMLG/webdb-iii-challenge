@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-  const id = req.params.id
+  const { id } = req.params
   try {
     const cohort = await Cohorts.get(id)
     cohort
@@ -21,6 +21,18 @@ router.get('/:id', async (req, res) => {
   } catch (error) {
     res.status(500).json(error)
   }
+})
+
+router.post('/', async (req, res) => {
+  const { body } = req
+  if (body && body.name)
+    try {
+      const cohort = await Cohorts.insert(body)
+      res.status(200).json(cohort)
+    } catch (error) {
+      res.status(500).json(error)
+    }
+  else res.status(500).json({ error: 'Please provide a name' })
 })
 
 module.exports = router
