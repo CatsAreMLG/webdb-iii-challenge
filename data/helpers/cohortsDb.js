@@ -3,7 +3,8 @@ const TABLE = 'cohorts'
 
 module.exports = {
   get,
-  insert
+  insert,
+  update
 }
 
 function get(id) {
@@ -14,10 +15,14 @@ function get(id) {
   else return db(TABLE)
 }
 
-function insert(cohort) {
+function insert(name) {
   return db(TABLE)
-    .insert(cohort)
-    .then(ids => {
-      return get(ids[0])
-    })
+    .insert(name)
+    .then(ids => get(ids[0]))
+}
+
+function update(id, changes) {
+  return db(TABLE)
+    .where({ id })
+    .update(changes)
 }

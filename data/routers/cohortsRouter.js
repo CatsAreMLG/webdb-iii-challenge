@@ -35,4 +35,19 @@ router.post('/', async (req, res) => {
   else res.status(500).json({ error: 'Please provide a name' })
 })
 
+router.put('/:id', async (req, res) => {
+  const { id } = req.params
+  const { body } = req
+  if (body && body.name)
+    try {
+      const cohort = await Cohorts.update(id, body)
+      cohort
+        ? res.status(200).json(cohort)
+        : res.status(404).json({ message: 'Cohort not found' })
+    } catch (error) {
+      res.status(500).json(error)
+    }
+  else res.status(500).json({ error: 'Please provide a name' })
+})
+
 module.exports = router
