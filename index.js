@@ -10,7 +10,4 @@ server.use(helmet())
 server.use(express.json())
 
 const PORT = 9090
-
-server.listen(PORT, (req, res) => {
-  console.log(`listening on port ${PORT}`)
-})
+server.listen(PORT, _ => console.log(`listening on port ${PORT}`))
