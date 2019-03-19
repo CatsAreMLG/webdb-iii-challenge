@@ -50,4 +50,16 @@ router.put('/:id', async (req, res) => {
   else res.status(500).json({ error: 'Please provide a name' })
 })
 
+router.delete('/:id', async (req, res) => {
+  const { id } = req.params
+  try {
+    const deleted = await Cohorts.remove(id)
+    deleted
+      ? res.status(200).json(deleted)
+      : res.status(404).json({ message: 'Cohort not found' })
+  } catch (error) {
+    res.status(500).json(error)
+  }
+})
+
 module.exports = router

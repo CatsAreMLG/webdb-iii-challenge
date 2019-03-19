@@ -4,7 +4,8 @@ const TABLE = 'cohorts'
 module.exports = {
   get,
   insert,
-  update
+  update,
+  remove
 }
 
 function get(id) {
@@ -25,4 +26,10 @@ function update(id, changes) {
   return db(TABLE)
     .where({ id })
     .update(changes)
+}
+
+function remove(id) {
+  return db(TABLE)
+    .where({ id })
+    .del()
 }
